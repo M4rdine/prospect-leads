@@ -44,6 +44,7 @@ export class WhatsappService {
       qrcode: true,
       integration: "WHATSAPP-BAILEYS"
     }
+
     const response = await firstValueFrom(this.http.post(url, payload, { headers }));
     return response.data;
   }
