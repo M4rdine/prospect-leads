@@ -19,14 +19,15 @@ export class WhatsappController {
         return this.whatsappService.getStatus();
     }
 
-    @Get('connect')
-    async getConnectInstance() {
-        return this.whatsappService.getConnectInstance();
+    @Post('connect')
+    async getConnectInstance(@Body() body: {instanceName: string}) {
+        console.log(body);
+        return this.whatsappService.getConnectInstance(body.instanceName);
     }
 
     @Post('instance')
-    async createInstance() {
-        return this.whatsappService.createInstance();
+    async createInstance(@Body() instanceName: string) {
+        return this.whatsappService.createInstance(instanceName);
     }
 
     @Post('webhook')

@@ -29,18 +29,18 @@ export class WhatsappService {
     return response.data;
   }
 
-  async getConnectInstance() {
-    const url = `${this.BASE_URL}/instance/connect/${this.INSTANCE}`;
+  async getConnectInstance(instanceName: string) {
+    const url = `${this.BASE_URL}/instance/connect/${instanceName}`;
     const headers = { apikey: process.env.AUTHENTICATION_API_KEY };
     const response = await firstValueFrom(this.http.get(url, { headers }));
     return response.data;
   }
 
-  async createInstance() {
+  async createInstance(instanceName: string) {
     const url = `${this.BASE_URL}/instance/create`;
     const headers = { apikey: process.env.AUTHENTICATION_API_KEY };
     const payload = {
-      instanceName: this.INSTANCE,
+      instanceName: instanceName,
       qrcode: true,
       integration: "WHATSAPP-BAILEYS"
     }
@@ -48,5 +48,4 @@ export class WhatsappService {
     const response = await firstValueFrom(this.http.post(url, payload, { headers }));
     return response.data;
   }
-  
 }
